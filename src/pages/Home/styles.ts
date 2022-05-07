@@ -17,6 +17,7 @@ export const ProductList = styled.ul`
     img {
       align-self: center;
       max-width: 250px;
+      height: 150px;
     }
 
     > strong {
