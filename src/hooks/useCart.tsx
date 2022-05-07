@@ -36,15 +36,15 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     try {
       const updateCart = [...cart];
       const productExist = updateCart.find(product => product.id === productId);
-      
+
       const currentAmount = productExist ? productExist.amount : 0;
       const amount = currentAmount + 1;
 
-      if(productExist){
+      if (productExist) {
         productExist.amount = amount;
-      }else {
+      } else {
         const product = await api.get(`/products/${productId}`);
-        
+
         const newProduct = {
           ...product.data,
           amount: 1
@@ -54,7 +54,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       }
 
       setCart(updateCart);
-      localStorage.setItem('@liven:cart',JSON.stringify(updateCart));
+      localStorage.setItem('@liven:cart', JSON.stringify(updateCart));
     } catch {
       toast.error('Erro na adição do produto');
     }
@@ -65,11 +65,11 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       const updatedCart = [...cart];
       const productIndex = updatedCart.findIndex(product => product.id === productId);
 
-      if (productIndex>=0){
-        updatedCart.splice(productIndex,1);
+      if (productIndex >= 0) {
+        updatedCart.splice(productIndex, 1);
         setCart(updatedCart);
-        localStorage.setItem('@liven:cart',JSON.stringify(updatedCart))
-      }else {
+        localStorage.setItem('@liven:cart', JSON.stringify(updatedCart))
+      } else {
         throw Error();
       }
     } catch {
@@ -82,17 +82,17 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     amount,
   }: UpdateProductAmount) => {
     try {
-      if (amount <= 0){
+      if (amount <= 0) {
         return;
       }
 
       const updatedCart = [...cart];
       const productExists = updatedCart.find(product => product.id === productId);
 
-      if(productExists){
+      if (productExists) {
         productExists.amount = amount;
         setCart(updatedCart);
-        localStorage.setItem('@liven:cart',JSON.stringify(updatedCart));
+        localStorage.setItem('@liven:cart', JSON.stringify(updatedCart));
       } else {
         throw Error();
       }

@@ -1,5 +1,6 @@
 import Router from './Router';
 import GlobalStyles from './styles/global';
+import Header from './components/Header';
 
 import { CartProvider } from './hooks/useCart';
 
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <CartProvider>
         <GlobalStyles />
+        <Header />
         <Router />
       </CartProvider>
     </div>
