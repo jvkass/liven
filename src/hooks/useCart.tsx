@@ -52,9 +52,11 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
         updateCart.push(newProduct);
       }
-
+      
       setCart(updateCart);
       localStorage.setItem('@liven:cart', JSON.stringify(updateCart));
+      toast.success('Sucesso na adição do produto ao carrinho');
+    
     } catch {
       toast.error('Erro na adição do produto');
     }

@@ -4,6 +4,7 @@ import {
   MdAddCircleOutline,
   MdRemoveCircleOutline,
 } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 import { useCart } from '../../hooks/useCart';
 import { formatPrice } from '../../util/format';
@@ -26,7 +27,7 @@ const Cart = (): JSX.Element => {
     subTotal: formatPrice(product.price * product.amount)
   }))
 
-  
+
 
   const total =
     formatPrice(
@@ -45,6 +46,13 @@ const Cart = (): JSX.Element => {
 
   function handleRemoveProduct(productId: number) {
     removeProduct(productId);
+  }
+  function handleFinishedBuy() {
+    if (cart.length > 0) {
+      toast.success('Sucesso ao finalizar a compra');
+    }else{
+      toast.error('Não há produtos no carrinho para finalizar a compra');
+    }
   }
 
   return (
@@ -108,7 +116,12 @@ const Cart = (): JSX.Element => {
       </ProductTable>
 
       <footer>
-        <button type="button">Finalizar pedido</button>
+        <button type="button"
+          onClick={() => handleFinishedBuy()}
+
+        >
+          Finalizar pedido
+        </button>
 
         <Total>
           <span>TOTAL</span>
