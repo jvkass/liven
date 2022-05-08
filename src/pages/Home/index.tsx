@@ -41,7 +41,7 @@ const Home = (): JSX.Element => {
         priceFormatted: formatPrice(product.price)
       }))
 
-      console.log("data products ",data);
+      console.log("data products ", data);
 
       setProducts(data);
     }
@@ -50,7 +50,7 @@ const Home = (): JSX.Element => {
   }, []);
 
   function handleAddProduct(id: number) {
-    console.log("product id ",id);
+    console.log("product id ", id);
     addProduct(id)
   }
 
@@ -63,10 +63,9 @@ const Home = (): JSX.Element => {
           <span>{product.priceFormatted}</span>
           <button
             type="button"
-            data-testid="add-product-button"
             onClick={() => handleAddProduct(product.id)}
           >
-            <div data-testid="cart-product-quantity">
+            <div >
               <MdAddShoppingCart size={16} color="#FFF" />
               {cartItemsAmount[product.id] || 0}
             </div>
